@@ -1,2 +1,2 @@
 # magic-square-tdd-ts
-Magic Square implementation on JavaScript using TypeScript
+Magic Square implementation on Test-Driven Development using TypeScript
