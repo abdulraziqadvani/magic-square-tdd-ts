@@ -21,6 +21,18 @@ describe('Magic Square Algorithm 1', () => {
             const index = [2, 2];
             expect(index).eql([2, 2]);
         });
+
+        it('Calculate next Index Number of next row', () => {
+            const n = magicSquare.length;
+            for (let index = 0; index < n; index++) {
+                
+            }
+        });
+
+
+        it('Calculate next Index Number of next column', () => {
+
+        });
     });
 
     describe('Check Rule', () => {
@@ -63,3 +75,13 @@ describe('Magic Square Algorithm 1', () => {
         });
     });
 });
+
+function getRowIndex(magicSquare: number[][]) {
+    let maxValue = null;
+    magicSquare.forEach(arr => {
+        arr.forEach(element => {
+            if (element && element > maxValue) {
+
+        })
+    });
+}
