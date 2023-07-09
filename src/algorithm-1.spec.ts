@@ -25,7 +25,7 @@ describe('Magic Square Algorithm 1', () => {
         it('Calculate next Index Number of next row', () => {
             const n = magicSquare.length;
             for (let index = 0; index < n; index++) {
-                
+
             }
         });
 
@@ -82,6 +82,7 @@ function getRowIndex(magicSquare: number[][]) {
         arr.forEach(element => {
             if (element && element > maxValue) {
 
-        })
+            }
+        });
     });
 }
