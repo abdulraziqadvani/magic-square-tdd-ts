@@ -1,10 +1,8 @@
 // let magicSquare = [[8, 1, 6], [3, 5, 7], [4, 9, 2]];
 // let magicSquare = [[null, 1, null], [null, null, null], [null, null, null]];
-// let magicSquareJson = {
-//     1: [0, 1]
-// };
+
 let magicSquare: number[][] = [];
-let magicSquareLength = 3;
+let magicSquareLength: number = 3;
 
 export const getIndexOfFirstValue = () => {
   return [0, 1];
@@ -13,10 +11,6 @@ export const getIndexOfFirstValue = () => {
 export const getMagicSquare = () => {
   return magicSquare;
 }
-
-// export const getMagicSquareJson = () => {
-//     return magicSquareJson;
-// }
 
 export const getNextElementPosition = (previousIndex: Array<number>): Array<number> => {
 
@@ -28,7 +22,7 @@ export const getNextElementPosition = (previousIndex: Array<number>): Array<numb
   }
 
   // Check if column index becomes length of Magic Square
-  if (nextPosition[1] >= (magicSquareLength - 1)) {
+  if (nextPosition[1] >= magicSquareLength) {
     nextPosition[1] = 0;
   }
 
@@ -52,10 +46,7 @@ export const getMagicSquareLength = (): number => {
 export const initializeMagicSquare = (length: number) => {
   magicSquareLength = length;
 
-  // magicSquare = new Array(length).fill(new Array(length).fill(null));
   magicSquare = Array.from({ length }, () => Array.from({ length }), () => null);
-
-  // console.log(magicSquare);
 }
 
 export const fillMagicSquare = () => {
@@ -67,15 +58,17 @@ export const fillMagicSquare = () => {
 
   console.log('magicSquare => ', magicSquare);
 
-  // magicSquare.forEach(arr => {
-  //   arr.forEach(() => {
-  //     if (counter !== magicSquareLength * magicSquareLength) {
-  //       previousIndex = getNextElementPosition(previousIndex);
-  //       magicSquare[previousIndex[0]][previousIndex[1]] = counter;
-  //       counter++;
-  //     }
-  //   })
-  // });
+  magicSquare.forEach(arr => {
+    arr.forEach(() => {
+      if ((counter - 1) !== magicSquareLength * magicSquareLength) {
+        previousIndex = getNextElementPosition(previousIndex);
+        magicSquare[previousIndex[0]][previousIndex[1]] = counter;
+        counter++;
+      }
+    });
+  });
+
+  console.log('magicSquare => ', magicSquare);
 }
 
 initializeMagicSquare(3);
