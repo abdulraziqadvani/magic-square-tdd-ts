@@ -16,7 +16,7 @@ import {
 describe('Magic Square Algorithm 1', () => {
   const magicSquare = getMagicSquare();
   // const lastElement = Object.entries(magicSquareJson).sort().pop();
-  const nextPosition = getNextElementPosition();
+  const nextPosition = getNextElementPosition([0, 1]);
 
   console.log('magicSquare => ', magicSquare);
   console.log('nextPosition => ', nextPosition);

@@ -18,7 +18,7 @@ export const getMagicSquare = () => {
 //     return magicSquareJson;
 // }
 
-export const getNextElementPosition = (previousIndex?: Array<number>): Array<number> => {
+export const getNextElementPosition = (previousIndex: Array<number>): Array<number> => {
 
   let nextPosition = [previousIndex[0] - 1, previousIndex[1] + 1];
 
@@ -67,15 +67,15 @@ export const fillMagicSquare = () => {
 
   console.log('magicSquare => ', magicSquare);
 
-  magicSquare.forEach(arr => {
-    arr.forEach(() => {
-      if (counter !== magicSquareLength * magicSquareLength) {
-        previousIndex = getNextElementPosition(previousIndex);
-        magicSquare[previousIndex[0]][previousIndex[1]] = counter;
-        counter++;
-      }
-    })
-  });
+  // magicSquare.forEach(arr => {
+  //   arr.forEach(() => {
+  //     if (counter !== magicSquareLength * magicSquareLength) {
+  //       previousIndex = getNextElementPosition(previousIndex);
+  //       magicSquare[previousIndex[0]][previousIndex[1]] = counter;
+  //       counter++;
+  //     }
+  //   })
+  // });
 }
 
 initializeMagicSquare(3);
