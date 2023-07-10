@@ -22,20 +22,24 @@ export const getNextElementPosition = (previousIndex?: Array<number>): Array<num
 
   let nextPosition = [previousIndex[0] - 1, previousIndex[1] + 1];
 
-  if (nextPosition[0] < 0) { // Check if Rows overflows
+  // Check if Rows overflows
+  if (nextPosition[0] < 0) {
     nextPosition[0] = magicSquareLength - 1;
   }
 
-  if (nextPosition[1] >= (magicSquareLength - 1)) { // Check if column index becomes length of Magic Square
+  // Check if column index becomes length of Magic Square
+  if (nextPosition[1] >= (magicSquareLength - 1)) {
     nextPosition[1] = 0;
   }
 
-  if (magicSquare[nextPosition[0]][nextPosition[1]]) { // Check if cell is already filled
+  // Check if cell is already filled
+  if (magicSquare[nextPosition[0]][nextPosition[1]]) {
     nextPosition = [previousIndex[0] + 1, previousIndex[1]];
   }
 
-  if (nextPosition[0] >= magicSquareLength && nextPosition[1] === 0) {
-    nextPosition = [magicSquareLength - 2, 0];
+  // Check if Row index equals to Magic Square Length and Column Index equals to 0
+  if (nextPosition[0] < 0 && nextPosition[1] >= magicSquareLength) {
+    nextPosition = [previousIndex[0] + 1, magicSquareLength - 1];
   }
 
   return nextPosition;
