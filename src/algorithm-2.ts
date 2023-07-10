@@ -5,7 +5,7 @@ let magicSquare: number[][] = [];
 let magicSquareLength: number = 3;
 
 export const getIndexOfFirstValue = () => {
-  return [0, 1];
+  return [0, Math.floor(magicSquareLength / 2)];
 }
 
 export const getMagicSquare = () => {
@@ -71,5 +71,5 @@ export const fillMagicSquare = () => {
   console.log('magicSquare => ', magicSquare);
 }
 
-initializeMagicSquare(3);
+initializeMagicSquare(5);
 fillMagicSquare();
