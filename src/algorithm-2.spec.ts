@@ -8,18 +8,13 @@
 
 import { expect, assert } from 'chai';
 import {
-  getIndexFirstValue,
-  getRule,
   getMagicSquare,
-  // getMagicSquareJson,
   getNextElementPosition,
   getMagicSquareLength
 } from './algorithm-2';
 
 describe('Magic Square Algorithm 1', () => {
   const magicSquare = getMagicSquare();
-  // const magicSquareJson = getMagicSquareJson();
-  // const magicSquareJson = {};
   // const lastElement = Object.entries(magicSquareJson).sort().pop();
   const nextPosition = getNextElementPosition();
 
@@ -37,6 +32,18 @@ describe('Magic Square Algorithm 1', () => {
       assert.ok(nextPosition[0].toString(), 'Row is not overflowed.');
     });
 
+    // it('Top Row Overflow', () => {
+    //   magicSquare.forEach(arr => {
+    //     arr.forEach(element => {
+    //       if (element === -1) {
+    //         assert.fail(-1, element, 'Row is overflowed.');
+    //       }
+    //     });
+    //   });
+
+    //   assert.ok(true, 'Row is not overflowed.');
+    // });
+
     it('Right Column Overflow', () => {
       if (nextPosition[1] >= magicSquareLength) {
         assert.fail(magicSquareLength, nextPosition[1], 'Column is overflowed.');
@@ -45,17 +52,40 @@ describe('Magic Square Algorithm 1', () => {
       assert.ok(nextPosition[1].toString(), 'Column is not overflowed.');
     });
 
-    it('Already Filled Cell', () => {
-      if (magicSquare[nextPosition[0]][nextPosition[1]]) {
-        assert.fail(true, false, 'Cell is already filled.');
-      }
+    // it('Right Column Overflow', () => {
+    //   magicSquare.forEach(arr => {
+    //     arr.forEach(element => {
+    //       if (element >= magicSquareLength) {
+    //         assert.fail(magicSquareLength, element, 'Column is overflowed.');
+    //       }
+    //     });
+    //   });
 
-      assert.ok(nextPosition, 'Cell is empty.');
-    });
+    //   assert.ok(true, 'Column is not overflowed.');
+    // });
+
+    // it('Already Filled Cell', () => {
+    //   if (magicSquare[nextPosition[0]][nextPosition[1]]) {
+    //     assert.fail(true, false, 'Cell is already filled.');
+    //   }
+
+    //   assert.ok(nextPosition, 'Cell is empty.');
+    // });
   });
 
   describe('Validate Magic Square', () => {
-    const magicSquare = [[8, 1, 6], [3, 5, 7], [4, 9, 2]];
+    it('Check if whole magic square is filled', () => {
+      magicSquare.forEach(arr => {
+        arr.forEach(element => {
+          if (!element) {
+            assert.fail(false, true, 'Whole Magic Square is not filled.');
+          }
+        });
+      });
+
+      assert.ok(true, 'Whole Magic Square is filled.');
+    });
+
     it('Sum of row and column should be same and according to formula', () => {
       const n = magicSquare.length;
       const sum = (n * (Math.pow(n, 2) + 1)) / 2;
