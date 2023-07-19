@@ -13,30 +13,45 @@ export const getMagicSquare = () => {
 }
 
 export const getNextElementPosition = (previousIndex: Array<number>): Array<number> => {
-
   let nextPosition = [previousIndex[0] - 1, previousIndex[1] + 1];
 
   // Check if Rows overflows
   if (nextPosition[0] < 0) {
-    nextPosition[0] = magicSquareLength - 1;
+    nextPosition = rowOverflow(magicSquareLength, nextPosition);
   }
 
   // Check if column index becomes length of Magic Square
   if (nextPosition[1] >= magicSquareLength) {
-    nextPosition[1] = 0;
+    nextPosition = columnOverflow(magicSquareLength, nextPosition);
   }
 
   // Check if cell is already filled
   if (magicSquare[nextPosition[0]][nextPosition[1]]) {
-    nextPosition = [previousIndex[0] + 1, previousIndex[1]];
+    nextPosition = cellFilled(magicSquareLength, previousIndex);
   }
 
   // Check if Row index equals to Magic Square Length and Column Index equals to 0
   if (nextPosition[0] < 0 && nextPosition[1] >= magicSquareLength) {
-    nextPosition = [previousIndex[0] + 1, magicSquareLength - 1];
+    nextPosition = rowAndColumnOverflow(magicSquareLength, previousIndex);
   }
 
   return nextPosition;
+}
+
+export const rowOverflow = (magicSquareLength: number, positionIndex: Array<number>): Array<number> => {
+  return [magicSquareLength - 1, positionIndex[1]];
+}
+
+export const columnOverflow = (magicSquareLength: number, positionIndex: Array<number>): Array<number> => {
+  return [positionIndex[0], 0];
+}
+
+export const cellFilled = (magicSquareLength: number, positionIndex: Array<number>): Array<number> => {
+  return [positionIndex[0] + 1, positionIndex[1]];
+}
+
+export const rowAndColumnOverflow = (magicSquareLength: number, positionIndex: Array<number>): Array<number> => {
+  return [positionIndex[0] + 1, magicSquareLength - 1];
 }
 
 export const getMagicSquareLength = (): number => {
@@ -55,8 +70,6 @@ export const fillMagicSquare = () => {
 
   let counter = 2;
   let previousIndex = firstIndex;
-
-  console.log('magicSquare => ', magicSquare);
 
   magicSquare.forEach(arr => {
     arr.forEach(() => {
