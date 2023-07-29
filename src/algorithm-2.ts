@@ -4,7 +4,7 @@
 let magicSquare: number[][] = [];
 let magicSquareLength: number = 3;
 
-export const getIndexOfFirstValue = () => {
+export const getIndexOfFirstValue = (magicSquareLength: number) => {
   return [0, Math.floor(magicSquareLength / 2)];
 }
 
@@ -12,7 +12,7 @@ export const getMagicSquare = () => {
   return magicSquare;
 }
 
-export const getNextElementPosition = (previousIndex: Array<number>): Array<number> => {
+export const getNextElementPosition = (previousIndex: Array<number>, magicSquareLength: number): Array<number> => {
   let nextPosition = [previousIndex[0] - 1, previousIndex[1] + 1];
 
   // Check if Rows overflows
@@ -65,7 +65,7 @@ export const initializeMagicSquare = (length: number) => {
 }
 
 export const fillMagicSquare = () => {
-  const firstIndex = getIndexOfFirstValue();
+  const firstIndex = getIndexOfFirstValue(magicSquareLength);
   magicSquare[firstIndex[0]][firstIndex[1]] = 1;
 
   let counter = 2;
@@ -74,7 +74,7 @@ export const fillMagicSquare = () => {
   magicSquare.forEach(arr => {
     arr.forEach(() => {
       if ((counter - 1) !== magicSquareLength * magicSquareLength) {
-        previousIndex = getNextElementPosition(previousIndex);
+        previousIndex = getNextElementPosition(previousIndex, magicSquareLength);
         magicSquare[previousIndex[0]][previousIndex[1]] = counter;
         counter++;
       }
@@ -84,5 +84,5 @@ export const fillMagicSquare = () => {
   console.log('magicSquare => ', magicSquare);
 }
 
-initializeMagicSquare(5);
-fillMagicSquare();
+// initializeMagicSquare(5);
+// fillMagicSquare();

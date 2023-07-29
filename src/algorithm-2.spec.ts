@@ -7,70 +7,85 @@
 // rule 6 if you go out of the box from the top and right you follow rule 5
 
 import { expect, assert } from 'chai';
+import { threeByThree } from '../mock/mock';
 import {
   getMagicSquare,
   getNextElementPosition,
-  getMagicSquareLength
+  getMagicSquareLength,
+  rowOverflow,
+  getIndexOfFirstValue,
+  columnOverflow,
+  cellFilled,
+  rowAndColumnOverflow
 } from './algorithm-2';
 
 describe('Magic Square Algorithm 1', () => {
   const magicSquare = getMagicSquare();
+  const magicSquareLength = 3;
+
   // const lastElement = Object.entries(magicSquareJson).sort().pop();
-  const nextPosition = getNextElementPosition([0, 1]);
+  // const nextPosition = getNextElementPosition([0, 1], magicSquareLength);
 
   console.log('magicSquare => ', magicSquare);
-  console.log('nextPosition => ', nextPosition);
+  // console.log('nextPosition => ', nextPosition);
 
-  const magicSquareLength = getMagicSquareLength();
+  // const magicSquareLength = getMagicSquareLength();
 
-  describe('Check overflows', () => {
-    it('Top Row Overflow', () => {
-      if (nextPosition[0] === -1) {
-        assert.fail(-1, nextPosition[0], 'Row is overflowed.');
+  describe('Check elements', () => {
+
+    it('Check index of first element', () => {
+      const threeByThreeMock = threeByThree;
+      const index = getIndexOfFirstValue(magicSquareLength);
+      const expected = threeByThreeMock['1'];
+      if (index.toString() !== expected.toString()) {
+        assert.fail(index, expected, 'Index of first value is incorrect');
       }
-
-      assert.ok(nextPosition[0].toString(), 'Row is not overflowed.');
+      assert.ok(index, 'Index of first value is correct');
     });
 
-    // it('Top Row Overflow', () => {
-    //   magicSquare.forEach(arr => {
-    //     arr.forEach(element => {
-    //       if (element === -1) {
-    //         assert.fail(-1, element, 'Row is overflowed.');
-    //       }
-    //     });
-    //   });
+    it('Row Overflow', () => {
+      const expected = [2, 2];
+      const result = rowOverflow(magicSquareLength, [-1, 2]);
 
-    //   assert.ok(true, 'Row is not overflowed.');
-    // });
-
-    it('Right Column Overflow', () => {
-      if (nextPosition[1] >= magicSquareLength) {
-        assert.fail(magicSquareLength, nextPosition[1], 'Column is overflowed.');
+      if (result.toString() !== expected.toString()) {
+        assert.fail(result, expected, 'Test Case Failed');
       }
 
-      assert.ok(nextPosition[1].toString(), 'Column is not overflowed.');
+      assert.ok(result, 'Test Case Passed');
     });
 
-    // it('Right Column Overflow', () => {
-    //   magicSquare.forEach(arr => {
-    //     arr.forEach(element => {
-    //       if (element >= magicSquareLength) {
-    //         assert.fail(magicSquareLength, element, 'Column is overflowed.');
-    //       }
-    //     });
-    //   });
+    it('Column Overflow', () => {
+      const expected = [1, 0];
+      const result = columnOverflow(magicSquareLength, [1, 3]);
 
-    //   assert.ok(true, 'Column is not overflowed.');
-    // });
+      if (result.toString() !== expected.toString()) {
+        assert.fail(result, expected, 'Test Case Failed');
+      }
 
-    // it('Already Filled Cell', () => {
-    //   if (magicSquare[nextPosition[0]][nextPosition[1]]) {
-    //     assert.fail(true, false, 'Cell is already filled.');
-    //   }
+      assert.ok(result, 'Test Case Passed');
+    });
 
-    //   assert.ok(nextPosition, 'Cell is empty.');
-    // });
+    it('Cell Filled', () => {
+      const expected = [2, 0];
+      const result = cellFilled(magicSquareLength, [1, 0]);
+
+      if (result.toString() !== expected.toString()) {
+        assert.fail(result, expected, 'Test Case Failed');
+      }
+
+      assert.ok(result, 'Test Case Passed');
+    });
+
+    it('Row and Column Overflow', () => {
+      const expected = [1, 2];
+      const result = rowAndColumnOverflow(magicSquareLength, [0, 2]);
+
+      if (result.toString() !== expected.toString()) {
+        assert.fail(result, expected, 'Test Case Failed');
+      }
+
+      assert.ok(result, 'Test Case Passed');
+    });
   });
 
   describe('Validate Magic Square', () => {
