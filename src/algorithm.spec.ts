@@ -6,12 +6,9 @@
 // rule 5 by following rule 2 you end up in a cell that is already occupied , then select the row below the same cell
 // rule 6 if you go out of the box from the top and right you follow rule 5
 
-import { expect, assert } from 'chai';
-import { threeByThree } from '../mock/mock';
+import { threeByThree as threeByThreeMock } from '../mock/mock';
 import {
   getMagicSquare,
-  getNextElementPosition,
-  getMagicSquareLength,
   rowOverflow,
   getIndexOfFirstValue,
   columnOverflow,
@@ -19,64 +16,40 @@ import {
   rowAndColumnOverflow,
   initializeMagicSquare,
   fillMagicSquare
-} from './algorithm-2';
+} from './algorithm';
 
 describe('Magic Square Algorithm 1', () => {
   const magicSquareLength = 3;
 
   describe('Check elements', () => {
     it('Check index of first element', () => {
-      const threeByThreeMock = threeByThree;
-      const index = getIndexOfFirstValue(magicSquareLength);
+      const result = getIndexOfFirstValue(magicSquareLength);
       const expected = threeByThreeMock['1'];
-      if (index.toString() !== expected.toString()) {
-        assert.fail(index, expected, 'Index of first value is incorrect');
-      }
-      assert.ok(index, 'Index of first value is correct');
+      expect(result.toString()).toBe(expected.toString());
     });
 
     it('Row Overflow', () => {
       const expected = [2, 2];
       const result = rowOverflow(magicSquareLength, [-1, 2]);
-
-      if (result.toString() !== expected.toString()) {
-        assert.fail(result, expected, 'Test Case Failed');
-      }
-
-      assert.ok(result, 'Test Case Passed');
+      expect(result.toString()).toBe(expected.toString());
     });
 
     it('Column Overflow', () => {
       const expected = [1, 0];
       const result = columnOverflow(magicSquareLength, [1, 3]);
-
-      if (result.toString() !== expected.toString()) {
-        assert.fail(result, expected, 'Test Case Failed');
-      }
-
-      assert.ok(result, 'Test Case Passed');
+      expect(result.toString()).toBe(expected.toString());
     });
 
     it('Cell Filled', () => {
       const expected = [2, 0];
       const result = cellFilled(magicSquareLength, [1, 0]);
-
-      if (result.toString() !== expected.toString()) {
-        assert.fail(result, expected, 'Test Case Failed');
-      }
-
-      assert.ok(result, 'Test Case Passed');
+      expect(result.toString()).toBe(expected.toString());
     });
 
     it('Row and Column Overflow', () => {
       const expected = [1, 2];
       const result = rowAndColumnOverflow(magicSquareLength, [0, 2]);
-
-      if (result.toString() !== expected.toString()) {
-        assert.fail(result, expected, 'Test Case Failed');
-      }
-
-      assert.ok(result, 'Test Case Passed');
+      expect(result.toString()).toBe(expected.toString());
     });
   });
 
@@ -88,13 +61,11 @@ describe('Magic Square Algorithm 1', () => {
     it('Check if whole magic square is filled', () => {
       magicSquare.forEach(arr => {
         arr.forEach(element => {
-          if (!element) {
-            assert.fail(false, true, 'Whole Magic Square is not filled.');
-          }
+          expect(element).toBeDefined();
         });
       });
 
-      assert.ok(true, 'Whole Magic Square is filled.');
+      expect(true).toBeTruthy();
     });
 
     it('Sum of row and column should be same and according to formula', () => {
@@ -102,11 +73,10 @@ describe('Magic Square Algorithm 1', () => {
       const sum = (n * (Math.pow(n, 2) + 1)) / 2;
       magicSquare.forEach(arr => {
         const arrSum = eval(arr.join('+'));
-        if (sum !== arrSum) {
-          assert.fail(arrSum, sum, 'Sum of a Magic Square is incorrect.');
-        }
+        expect(sum).toEqual(arrSum);
       });
-      assert.ok(sum, 'Sum of a Magic Square.');
+
+      expect(true).toBeTruthy();
     });
 
     it('Numbers should be unique in a Magic Square', () => {
@@ -119,11 +89,9 @@ describe('Magic Square Algorithm 1', () => {
         })
       });
 
-      if (uniqueValues.size === totalValues) {
-        assert.ok(magicSquare, 'Numbers are unique in a Magic Square.');
-      } else {
-        assert.fail(totalValues, uniqueValues.size, 'Numbers are not unique in a Magic Square.');
-      }
+      expect(uniqueValues.size).toEqual(totalValues);
     });
+
+    console.table(magicSquare);
   });
 });

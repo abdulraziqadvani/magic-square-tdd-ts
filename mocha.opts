@@ -1,3 +1,0 @@
---compilers ts:ts-node/register
-test/mocha-globals.js
-src/**/algorithm-2.spec.ts

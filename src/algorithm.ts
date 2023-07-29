@@ -1,6 +1,3 @@
-// let magicSquare = [[8, 1, 6], [3, 5, 7], [4, 9, 2]];
-// let magicSquare = [[null, 1, null], [null, null, null], [null, null, null]];
-
 let magicSquare: number[][] = [];
 let magicSquareLength: number = 3;
 
@@ -80,9 +77,4 @@ export const fillMagicSquare = () => {
       }
     });
   });
-
-  console.log('magicSquare => ', magicSquare);
 }
-
-// initializeMagicSquare(5);
-// fillMagicSquare();
