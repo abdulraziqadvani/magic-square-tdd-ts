@@ -16,23 +16,15 @@ import {
   getIndexOfFirstValue,
   columnOverflow,
   cellFilled,
-  rowAndColumnOverflow
+  rowAndColumnOverflow,
+  initializeMagicSquare,
+  fillMagicSquare
 } from './algorithm-2';
 
 describe('Magic Square Algorithm 1', () => {
-  const magicSquare = getMagicSquare();
   const magicSquareLength = 3;
 
-  // const lastElement = Object.entries(magicSquareJson).sort().pop();
-  // const nextPosition = getNextElementPosition([0, 1], magicSquareLength);
-
-  console.log('magicSquare => ', magicSquare);
-  // console.log('nextPosition => ', nextPosition);
-
-  // const magicSquareLength = getMagicSquareLength();
-
   describe('Check elements', () => {
-
     it('Check index of first element', () => {
       const threeByThreeMock = threeByThree;
       const index = getIndexOfFirstValue(magicSquareLength);
@@ -89,6 +81,10 @@ describe('Magic Square Algorithm 1', () => {
   });
 
   describe('Validate Magic Square', () => {
+    initializeMagicSquare(magicSquareLength);
+    fillMagicSquare();
+    const magicSquare = getMagicSquare();
+
     it('Check if whole magic square is filled', () => {
       magicSquare.forEach(arr => {
         arr.forEach(element => {
