@@ -28,9 +28,9 @@ export const getNextElementPosition = (previousIndex: Array<number>, magicSquare
   }
 
   // Check if Row index equals to Magic Square Length and Column Index equals to 0
-  if (nextPosition[0] < 0 && nextPosition[1] >= magicSquareLength) {
-    nextPosition = rowAndColumnOverflow(magicSquareLength, previousIndex);
-  }
+  // if (nextPosition[0] < 0 && nextPosition[1] >= magicSquareLength) {
+  //   nextPosition = rowAndColumnOverflow(magicSquareLength, previousIndex);
+  // }
 
   return nextPosition;
 }
@@ -83,5 +83,5 @@ export const fillMagicSquare = () => {
 }
 
 
-// initializeMagicSquare(3);
+// initializeMagicSquare(5);
 // fillMagicSquare();
