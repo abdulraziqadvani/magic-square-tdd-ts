@@ -77,4 +77,11 @@ export const fillMagicSquare = () => {
       }
     });
   });
+
+  // console.table(magicSquare);
+
 }
+
+
+// initializeMagicSquare(3);
+// fillMagicSquare();
