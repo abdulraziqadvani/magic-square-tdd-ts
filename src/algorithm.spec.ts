@@ -1,11 +1,3 @@
-// GENERAL RULE: You always try to go diagonally up towards the right
-// rule 1 start with top center
-// rule 2 increment by 1 and place in the row above the current one and to the right
-// rule 3 if you go out of the box from the top by following rule 2 you select the last row from that column (immediate column)
-// rule 4 if you out of the box from the right by following rule 2 you select the first column from the row above (immediate row)
-// rule 5 by following rule 2 you end up in a cell that is already occupied , then select the row below the same cell
-// rule 6 if you go out of the box from the top and right you follow rule 5
-
 import { threeByThree as threeByThreeMock } from '../mock/mock';
 import {
   getMagicSquare,
@@ -13,7 +5,6 @@ import {
   getIndexOfFirstValue,
   columnOverflow,
   cellFilled,
-  rowAndColumnOverflow,
   initializeMagicSquare,
   fillMagicSquare
 } from './algorithm';
@@ -45,12 +36,6 @@ describe('Magic Square Algorithm 1', () => {
       const result = cellFilled(magicSquareLength, [1, 0]);
       expect(result.toString()).toBe(expected.toString());
     });
-
-    // it('Row and Column Overflow', () => {
-    //   const expected = [0, 2];
-    //   const result = rowAndColumnOverflow(magicSquareLength, [-1, 3]);
-    //   expect(result.toString()).toBe(expected.toString());
-    // });
   });
 
   describe('Validate Magic Square', () => {

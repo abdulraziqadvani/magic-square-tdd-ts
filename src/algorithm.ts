@@ -27,11 +27,6 @@ export const getNextElementPosition = (previousIndex: Array<number>, magicSquare
     nextPosition = cellFilled(magicSquareLength, previousIndex);
   }
 
-  // Check if Row index equals to Magic Square Length and Column Index equals to 0
-  // if (nextPosition[0] < 0 && nextPosition[1] >= magicSquareLength) {
-  //   nextPosition = rowAndColumnOverflow(magicSquareLength, previousIndex);
-  // }
-
   return nextPosition;
 }
 
@@ -45,10 +40,6 @@ export const columnOverflow = (magicSquareLength: number, positionIndex: Array<n
 
 export const cellFilled = (magicSquareLength: number, positionIndex: Array<number>): Array<number> => {
   return [positionIndex[0] + 1, positionIndex[1]];
-}
-
-export const rowAndColumnOverflow = (magicSquareLength: number, positionIndex: Array<number>): Array<number> => {
-  return [positionIndex[0] + 1, magicSquareLength - 1];
 }
 
 export const getMagicSquareLength = (): number => {
